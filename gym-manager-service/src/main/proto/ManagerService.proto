@@ -1,0 +1,43 @@
+syntax = "proto3";
+
+option java_multiple_files = true;
+option java_package = "gym.manager.proto";
+
+package gymmanager;
+
+
+service GymManagerService {
+    rpc NewSubscription (NewSubscriptionRequest) returns (Subscription) {}
+    rpc RenewSubscription (RenewSubscriptionRequest) returns (Subscription) {}
+    rpc GetSubscription (GetSubscriptionRequest) returns (Subscription) {}
+    rpc GetAnalytics (GetAnalyticsRequest) returns (GetAnalyticsResponse) {}
+}
+
+message GetAnalyticsRequest {
+    string cartId = 1;
+}
+
+message GetAnalyticsResponse {
+    string cartId = 1;
+    int64 count = 2;
+    bool in = 3;
+}
+
+message NewSubscriptionRequest {
+    string cartId = 1;
+    int64 expirationTime = 2;
+}
+
+message Subscription {
+    string cartId = 1;
+    int64 expirationTime = 2;
+}
+
+message RenewSubscriptionRequest {
+    string cartId = 1;
+    int64 expirationTime = 2;
+}
+
+message GetSubscriptionRequest {
+    string cartId = 1;
+}
